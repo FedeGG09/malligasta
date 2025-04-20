@@ -1,17 +1,20 @@
 FROM python:3.10-slim
+
+# Evitar buffers de Python para logs inmediatos
+env PYTHONUNBUFFERED=1
+
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Instala dependencias
-COPY requirements.txt .
+# Copiar e instalar dependencias primero (para cache de capas)
+COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia los datos y configuración
-COPY cookies.json datos_turisticos.csv ./
+# Copiar el resto de la aplicación (código, datos, frontend, config)
+COPY . ./
 
-# Copia el backend y frontend
-COPY backend/ backend/
-COPY frontend/ frontend/
-
+# Puerto en el que la aplicación escuchará en Cloud Run
 EXPOSE 8080
 
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Comando por defecto: arranca Uvicorn apuntando al FastAPI en main.py
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
