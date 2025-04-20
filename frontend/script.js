@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // script.js
 
 // URL del endpoint de FastAPI para el chat
@@ -192,4 +191,3 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 });
->>>>>>> e707900abc7e99db73049c63d590af7cb1a84006
