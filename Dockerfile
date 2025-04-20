@@ -19,4 +19,4 @@ COPY . ./
 EXPOSE $PORT
 
 # 4) Comando por defecto: arranca Uvicorn leyendo el PORT en entorno\ n#    Ajusta <module>:<app> si tu FastAPI instancia está en otro archivo
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]
+CMD ["sh", "-c", "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"]
