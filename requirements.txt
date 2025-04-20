@@ -1,0 +1,18 @@
+<<<<<<< HEAD
+fastapi
+uvicorn
+pandas
+hugchat
+sentence-transformers
+pydantic
+pydantic-settings
+=======
+fastapi
+uvicorn
+pandas
+hugchat
+sentence-transformers
+pydantic
+pydantic-settings
+>>>>>>> e707900abc7e99db73049c63d590af7cb1a84006
+python-dotenv    # si usas un .env para parámetros
