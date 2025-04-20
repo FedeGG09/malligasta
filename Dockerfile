@@ -1,24 +1,20 @@
-# Base image
 FROM python:3.10-slim
+ENV PYTHONUNBUFFERED=1 PORT=8080
 
-# Disable Python buffering for immediate logs
-ENV PYTHONUNBUFFERED=1
-# Set default PORT (Cloud Run will override this)
-ENV PORT=8080
-
-# Working directory
+# 1) Copiar e instalar requisitos
 WORKDIR /app
-
-# 1) Copy and install dependencies (leverage Docker layer cache)
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 2) Copy application code, data and configuration
-COPY . ./
+# 2) Copiar app y datos
+COPY . /app
+# Mueve los datos al backend para que quede /app/backend/cookies.json, etc.
+RUN mv /app/cookies.json /app/backend/
+RUN mv /app/datos_turisticos.csv /app/backend/
 
-# 3) Expose the port for the app
+# 3) Cambiar a directorio del backend
+WORKDIR /app/backend
 EXPOSE $PORT
 
-# 4) Start Uvicorn for the FastAPI app in backend/main.py
-CMD ["sh", "-c", "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"]
-
+# 4) Arrancar uvicorn apuntando a main.py
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]
