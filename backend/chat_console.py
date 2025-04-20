@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# backend/chat_console.py
 
 import os
 import re
@@ -226,4 +224,4 @@ def rag_chat(pregunta: str) -> str:
     bot = _get_chatbot()
     respuesta = bot.chat(prompt)
     return respuesta.text 
->>>>>>> e707900abc7e99db73049c63d590af7cb1a84006
+
