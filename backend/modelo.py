@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# backend/modelo.py
+
 
 import os
 import re
@@ -274,4 +273,4 @@ if __name__ == "__main__":
         if q.lower() in ("q", "quit", "salir"):
             break
         print(chat(q))
->>>>>>> e707900abc7e99db73049c63d590af7cb1a84006
+
